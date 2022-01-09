@@ -80,6 +80,96 @@ client.on('message', async (channel, tags, message, self) => {
                 } else {
                     return await client.say(channel, `Wrong usage, try to specify type by "trigger" or "reponse".`)
                 }
+            } else if (subcommand == "list") {
+                if (args < 1) {
+                    return await client.say(channel, `You need to specify, what you want to see (triggers or responses).`)
+                }
+
+                let triggersOrResponses = args[0].toLowerCase()
+
+                if (triggersOrResponses == "triggers") {
+                    let triggers = ""
+                    for (let i = 1; i <= db.greetings.triggers.length; i++) {
+                        if (i != 1) triggers += "|"
+                        triggers += `${i}. "${db.greetings.triggers[i-1]}" `
+                    }
+                    return await client.say(channel, `Greetings triggers: ${triggers} - To remove trigger use !greetings remove trigger <id>`)
+                } else if (triggersOrResponses == "responses") {
+                    let responses = ""
+                    for (let i = 1; i <= db.greetings.responses.length; i++) {
+                        if (i != 1) triggers += "|"
+                        responses += `${i}. "${db.greetings.responses[i-1]}" `
+                    }
+                    return await client.say(channel, `Greetings responses: ${triggers} - To remove trigger use !greetings remove response <id>`)
+                } else {
+                    return await client.say(channel, `Wrong usage, try to specify type by "trigger" or "reponse".`)
+                }
+            } else if (subcommand == "list") {
+                if (args < 1) {
+                    return await client.say(channel, `You need to specify, what you want to see (triggers or responses).`)
+                }
+
+                let triggersOrResponses = args[0].toLowerCase()
+
+                if (triggersOrResponses == "triggers") {
+                    let triggers = ""
+                    for (let i = 1; i <= db.greetings.triggers.length; i++) {
+                        if (i != 1) triggers += "|"
+                        triggers += `${i}. "${db.greetings.triggers[i-1]}" `
+                    }
+                    return await client.say(channel, `Greetings triggers: ${triggers} - To remove trigger use !greetings remove trigger <id>`)
+                } else if (triggersOrResponses == "responses") {
+                    let responses = ""
+                    for (let i = 1; i <= db.greetings.responses.length; i++) {
+                        if (i != 1) triggers += "|"
+                        responses += `${i}. "${db.greetings.responses[i-1]}" `
+                    }
+                    return await client.say(channel, `Greetings responses: ${triggers} - To remove trigger use !greetings remove response <id>`)
+                } else {
+                    return await client.say(channel, `Wrong usage, try to specify type by "trigger" or "reponse".`)
+                }
+            } else if (subcommand == "remove") {
+                if (args < 2) {
+                    return await client.say(channel, `You need to specify what you want to remove (!greetings trigger <id>).`)
+                }
+
+                let triggerOrResponse = args[0].toLowerCase()
+                let id = parseInt(args[1])
+
+                if (triggerOrResponse == "trigger") {
+                    if (id < 1 || id > db.greetings.triggers.length) {
+                        return await client.say(channel, `Wrong ID. You need to specify ID in range from 1 to ${db.greetings.triggers.length}. To see list of triggers type !greetings list triggers`)
+                    }
+
+                    let removedTrigger = ""
+
+                    db.greetings.triggers = db.greetings.triggers.filter((v,i) => {
+                        if (i == id-1) {
+                            removedTrigger = v;
+                            return false;
+                        }
+                        return true
+                    });
+                    savedb(db)
+                    return await client.say(channel, `Greetings trigger "${removedTrigger}" removed successfully!`)
+                } else if (triggerOrResponse == "response") {
+                    if (id < 1 || id > db.greetings.responses.length) {
+                        return await client.say(channel, `Wrong ID. You need to specify ID in range from 1 to ${db.greetings.responses.length}. To see list of triggers type !greetings list responses`)
+                    }
+
+                    let removedResponse = ""
+
+                    db.greetings.responses = db.greetings.responses.filter((v,i) => {
+                        if (i == id-1) {
+                            removedResponse = v;
+                            return false;
+                        }
+                        return true
+                    });
+                    return await client.say(channel, `Greetings response "${removedTrigger}" removed successfully!`)
+                } else {
+                    return await client.say(channel, `Wrong usage, try to specify type by "trigger" or "reponse".`)
+                }
             }
         }
 

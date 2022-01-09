@@ -43,6 +43,10 @@ Still work in progress.
 
 - `!greetings add trigger <trigger>` - add trigger phrase for greetings, e.g. `!greetings add trigger hola`.
 - `!greetings add response <response>` - add response phrase for greetings, e.g. `!greetings add response Nice to see you!`
+- `!greetings list triggers` - sends list of all triggers with ids.
+- `!greetings list responses` - sends list of all responses with ids.
+- `!greetings remove trigger <id>` - removes trigger with specified id.
+- `!greetings remove response <id>` - removes response with specified id.
 
 #### Goodbyes
 
