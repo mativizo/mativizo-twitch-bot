@@ -37,10 +37,10 @@ client.on('message', async (channel, tags, message, self) => {
         }
     } else {
 
-        if (db.welcome.enabled) {
-            db.welcome.triggers.forEach(async (trigger) => {
+        if (db.greetings.enabled) {
+            db.greetings.triggers.forEach(async (trigger) => {
                 if (lowerMessage.includes(trigger)) {
-                    let response = getRandomItem(db.welcome.responses)
+                    let response = getRandomItem(db.greetings.responses)
                     return await client.say(channel, `@${tags['display-name']} ${response}`)
                 }
             })
