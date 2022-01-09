@@ -40,6 +40,10 @@ Still work in progress.
 In progress:
 - `!cmds`/`!commands` - showing commands on screen.
 
+## Triggers:
+
+Todo.
+
 ## Overlays
 
 Todo.

@@ -25,6 +25,7 @@ client.on('connected', () => {
 
 client.on('message', async (channel, tags, message, self) => {
     console.log(`📨 ${tags['display-name']}: ${message}`)
+    if (tags.username.toLowerCase() == process.env.TWITCH_USERNAME.toLowerCase()) return;
     const lowerMessage = message.toLowerCase();
 
     if (message.startsWith(process.env.PREFIX)) {
