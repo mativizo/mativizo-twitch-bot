@@ -50,6 +50,11 @@ Still work in progress.
 
 #### Goodbyes
 
+
+#### Utilities
+
+- `!reload` - reloads command files.
+
 ### Mods
 
 ### All users
