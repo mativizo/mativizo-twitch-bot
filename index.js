@@ -40,8 +40,17 @@ client.on('message', async (channel, tags, message, self) => {
         if (db.greetings.enabled) {
             db.greetings.triggers.forEach(async (trigger) => {
                 if (lowerMessage.includes(trigger)) {
-                    let response = getRandomItem(db.greetings.responses)
-                    return await client.say(channel, `@${tags['display-name']} ${response}`)
+                    let response = getRandomItem(db.greetings.responses);
+                    return await client.say(channel, `@${tags['display-name']} ${response}`);
+                }
+            })
+        }
+
+        if (db.goodbyes.enabled) {
+            db.goodbyes.triggers.forEach(async (trigger) => {
+                if (lowerMessage.includes(trigger)) {
+                    let response = getRandomItem(db.goodbyes.responses);
+                    return await client.say(channel, `@${tags['display-name']} ${response}`);
                 }
             })
         }

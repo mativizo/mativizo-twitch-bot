@@ -10,6 +10,18 @@
             "good afternoon", "good evening"],
         "responses": ["👋", "Hello!", "Hi!"]
     },
+    "goodbyes": {
+        "enabled": true,
+        "globalCooldown": 30,
+        "cooldownPerUser": 600,
+        "triggers": [
+            "papa", "pa pa", "dobranoc", "do jutra", "do widzenia", "dowidzenia",
+            "trzymaj sie", "trzymaj się", "trzymajcie się", "trzymajcie sie", "dobrej noc",
+            "do później", "goodnight", "nightnight", "good night", "night-night", "night night",
+            "goodbye", "bye", "seeya", "see you"
+        ],
+        "responses": ["👋", "Bye!", "Goodbye!"]
+    },
     "customCommands": [],
     "points": []
 }

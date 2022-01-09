@@ -46,7 +46,11 @@ Todo.
 
 #### Greetings
 
-Greetings are special triggers. When someone type e.g. "hello!" bot will reply with random message. Triggers and messages are saved in database. You can change settings by hand or by commands, check [#Commands](#commands).
+Greetings are special triggers. When someone type for e.g. "hello!" bot will reply with random message. Triggers and messages are saved in database. You can change settings by hand or by commands, check [#Commands](#commands).
+
+#### Goodbyes
+
+Goodbyes are special triggers, like Greetings. When someone type for e.g. "good night" bot will reply. All settings for Goodbyes are in database and can by changed by hand or by commands - check [#Commands](#commands)
 
 ## Overlays
 
