@@ -1,4 +1,8 @@
 {
+    "config": {
+        "prefix": "!",
+        "language": "en"
+    },
     "greetings": {
         "enabled": true,
         "globalCooldown": 30,

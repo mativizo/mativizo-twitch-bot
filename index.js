@@ -39,10 +39,10 @@ client.on('message', async (channel, tags, message, self) => {
     const lowerMessage = message.toLowerCase();
 
     // If message starts with prefix - it's command
-    if (message.startsWith(process.env.PREFIX)) {
+    if (message.startsWith(db.config.prefix)) {
 
         // Extract command and arguments from message
-        const { cmd, args } = getCmdAndArgs(message, process.env.PREFIX);
+        const { cmd, args } = getCmdAndArgs(message, db.config.prefix);
 
         // Test command
         if (cmd == "ping") {
