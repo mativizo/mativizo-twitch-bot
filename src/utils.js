@@ -4,7 +4,7 @@ const fs = require('fs');
 // Save DB object to json file
 const savedb = (db, name = 'db') => {
     let data = JSON.stringify(db);
-    fs.writeFileSync(`./${name}`, data);
+    fs.writeFileSync(`./${name}.json`, data);
 }
 
 // Load object (DB) from json file
