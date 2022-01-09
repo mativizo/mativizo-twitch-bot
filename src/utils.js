@@ -43,11 +43,51 @@ const getUserTags = (tags) => {
     }
 }
 
+const checkPermissions = (userTags, command) => {
+    let ap = command.allowedPermissions;
+    let nap = command.notAllowedPermissions;
+
+    
+    let userAllowed = false;
+    let userNotAllowed = true;
+    
+    // If user is allowed:
+    if (ap.length == 0) {
+        userAllowed = true;
+    } else if (ap[0] == "all") {
+        userAllowed = true;
+    } else {
+        for (a of ap) {
+            if (a == "streamer" && userTags.isStreamer) userAllowed = true;
+            if (a == "mod" && userTags.isMod) userAllowed = true;
+            if (a == "sub" && userTags.isSub) userAllowed = true;
+            if (a == "vip" && userTags.isVip) userAllowed = true;
+        }
+    }
+
+    // If user is not allowed:
+    if (nap.length == 0) {
+        userNotAllowed = false
+    } else if (nap[0] == "all") {
+        userNotAllowed = true
+    } else {
+        for (na of nap) {
+            if (na == "streamer" && userTags.isStreamer) userNotAllowed = true;
+            if (na == "mod" && userTags.isMod) userNotAllowed = true;
+            if (na == "sub" && userTags.isSub) userNotAllowed = true;
+            if (na == "vip" && userTags.isVip) userNotAllowed = true;
+        }
+    }
+
+    return (userAllowed && !userNotAllowed);
+}
+
 
 module.exports = {
     savedb,
     loaddb,
     getCmdAndArgs,
     getRandomItem,
-    getUserTags
+    getUserTags,
+    checkPermissions
 }

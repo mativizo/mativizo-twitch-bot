@@ -1,9 +1,10 @@
 // Mativizo Twitch Bot
 
 // Requires
+const fs = require('fs')
 const tmi = require('tmi.js');
 require('dotenv').config();
-const { getCmdAndArgs, loaddb, savedb, getRandomItem, getUserTags } = require('./src/utils')
+const { getCmdAndArgs, loaddb, savedb, getRandomItem, getUserTags, checkPermissions } = require('./src/utils')
 
 // Database - will be changed in future
 let db = {};
@@ -25,6 +26,7 @@ client.connect();
 // Listen to "connect" event
 client.on('connected', () => {
     console.log(`🤖 Connected to @${process.env.TWITCH_TARGET_CHANNEL} as ${process.env.TWITCH_USERNAME}.`)
+    client.commands = reloadCommands();
 });
 
 // Listen to "message" event
@@ -32,10 +34,10 @@ client.on('message', async (channel, tags, message, self) => {
     console.log(`📨 ${tags['display-name']}: ${message}`)
 
     // If message is from bot return
-    if (tags.username.toLowerCase() == process.env.TWITCH_USERNAME.toLowerCase()) return;
+    if (self) return;
 
     // Extract important tags
-    const {color, userId, isMod, isStreamer, isSub, isTurbo, isVip} = getUserTags(tags)
+    const userTags = getUserTags(tags)
     
     // Get lowercase version of message
     const lowerMessage = message.toLowerCase();
@@ -45,12 +47,19 @@ client.on('message', async (channel, tags, message, self) => {
 
         // Extract command and arguments from message
         const { cmd, args } = getCmdAndArgs(message, db.config.prefix);
-
-        // Test command
-        if (cmd == "ping") {
-            return await client.say(channel, `Pong!`)
+        
+        for (commandName of Object.keys(client.commands)) {
+            let tempCmd = client.commands[commandName];
+            if (tempCmd.aliases.includes(cmd)) {
+                if (!checkPermissions(userTags, tempCmd)) return;
+                if (tempCmd.dbSensitive) {
+                    db = await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db);
+                    return savedb(db);
+                } else {
+                    return await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db);
+                }
+            }
         }
-
         // Triggers
         if (cmd == "greetings" && isStreamer) {
             if (args.length < 1) return;
@@ -210,3 +219,18 @@ client.on('message', async (channel, tags, message, self) => {
 
     }
 });
+
+
+const reloadCommands = () => {
+    const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
+    let commands = {}
+
+    for (const file of commandFiles) {
+	    const command = require(`./src/commands/${file}`);
+	    commands[command.name] = command;
+    }
+
+    console.log(`🔃 Reloaded ${Object.keys(commands).length} command(s).`)
+
+    return commands;
+}
