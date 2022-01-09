@@ -6,7 +6,7 @@ module.exports = {
     allowedPermissions: ["streamer"],
     notAllowedPermissions: [],
     dbSensitive: false,
-    execute: async (channel, tags, message, client, lowerMessage, userTags, db) => {
+    execute: async (channel, tags, message, client, lowerMessage, userTags, db, args) => {
         client.commands = client.reloadCommands()
         return await client.say(channel, `Reloaded ${Object.keys(client.commands).length} command(s).`);
     }

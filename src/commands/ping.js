@@ -6,7 +6,7 @@ module.exports = {
     allowedPermissions: [],
     notAllowedPermissions: [],
     dbSensitive: false,
-    execute: async (channel, tags, message, client, lowerMessage, userTags, db) => {
+    execute: async (channel, tags, message, client, lowerMessage, userTags, db, args) => {
         return await client.say(channel, `Pong!`);
     }
 }

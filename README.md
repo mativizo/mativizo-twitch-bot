@@ -65,6 +65,8 @@ Still work in progress.
 
 ### All users
 
+- `!help <commandName>` - show info about command e.g. `!help ping`.
+
 In progress:
 - `!cmds`/`!commands` - showing commands on screen.
 
