@@ -1,0 +1,13 @@
+{
+    "welcome": {
+        "enabled": true,
+        "triggers": ["cześć", "czesc", "hej", "hello", "hi", "ave", "siema", "siemka",
+        "siemano", "siemanko", "dzień dobry",
+        "dzieńdobry", "dzien dobry", "dziendobry", "dobry wieczór",
+        "dobry wieczor", "dobrywieczór", "dobrywieczor", "good morning",
+        "good afternoon", "good evening"],
+        "responses": ["👋", "Hello!", "Hi!"]
+    },
+    "customCommands": [],
+    "points": []
+}
