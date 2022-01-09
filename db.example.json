@@ -1,3 +1,18 @@
 {
-    
+    "greetings": {
+        "enabled": true,
+        "globalCooldown": 30,
+        "cooldownPerUser": 600,
+        "triggers": ["hello"],
+        "responses": ["Hello! 👋"]
+    },
+    "goodbyes": {
+        "enabled": true,
+        "globalCooldown": 30,
+        "cooldownPerUser": 600,
+        "triggers": ["bye"],
+        "responses": ["Bye! 👋"]
+    },
+    "customCommands": [],
+    "points": []
 }
