@@ -1,19 +1,20 @@
 // Utils
-
 const fs = require('fs');
 
+// Save DB object to json file
 const savedb = (db, name = 'db') => {
     let data = JSON.stringify(db);
     fs.writeFileSync(`./${name}`, data);
 }
 
+// Load object (DB) from json file
 const loaddb = (name = 'db') => {
     let rawdata = fs.readFileSync(`./${name}.json`, 'utf-8');
     let db = JSON.parse(rawdata)
     return db;
 }
 
-
+// Extract command and args from message
 const getCmdAndArgs = (message, prefix) => {
     let args = message.trim().split(" ");
     let cmd = args.shift();
@@ -22,6 +23,7 @@ const getCmdAndArgs = (message, prefix) => {
     return { cmd, args }
 }
 
+// Get random item from array
 const getRandomItem = (arr) => {
     if (arr.length == 1) return arr[0];
     return arr[Math.floor(Math.random() * arr.length)]
