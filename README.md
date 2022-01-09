@@ -37,6 +37,19 @@ Still work in progress.
 
 ## Commands
 
+### Streamer
+
+#### Greetings
+
+- `!greetings add trigger <trigger>` - add trigger phrase for greetings, e.g. `!greetings add trigger hola`.
+- `!greetings add response <response>` - add response phrase for greetings, e.g. `!greetings add response Nice to see you!`
+
+#### Goodbyes
+
+### Mods
+
+### All users
+
 In progress:
 - `!cmds`/`!commands` - showing commands on screen.
 
