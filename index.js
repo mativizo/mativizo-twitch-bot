@@ -16,7 +16,6 @@ client.on('connected', () => console.log("🤖 Connected to Twitch Chat."));
 
 client.on('message', (channel, tags, message, self) => {
     console.log(`📨 ${tags['display-name']}: ${message}`)
-
     const lowerMessage = message.toLowerCase();
 
     if (message.startsWith(process.env.PREFIX)) {

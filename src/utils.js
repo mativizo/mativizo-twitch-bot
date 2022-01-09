@@ -1,3 +1,5 @@
+// Utils
+
 const getCmdAndArgs = (message, prefix) => {
     let args = message.trim().split(" ");
     let cmd = args.shift();
