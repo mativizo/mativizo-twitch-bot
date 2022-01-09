@@ -29,10 +29,25 @@ const getRandomItem = (arr) => {
     return arr[Math.floor(Math.random() * arr.length)]
 }
 
+// Extract user tags
+const getUserTags = (tags) => {
+    return {
+        color: tags.color,
+        isTurbo: tags.turbo,
+        isSub: tags.subscriber,
+        isStreamer: (Object.keys(tags.badges).includes('broadcaster')) ? tags.badges.broadcaster == "1" : false,
+        isMod: (Object.keys(tags.badges).includes('moderator')) ? tags.badges.moderator == "1" : false,
+        isVip: (Object.keys(tags.badges).includes('vip')) ? tags.badges.vip == "1" : false,
+        prettyName: tags['display-name'],
+        userId: tags['user-id']
+    }
+}
+
 
 module.exports = {
     savedb,
     loaddb,
     getCmdAndArgs,
-    getRandomItem
+    getRandomItem,
+    getUserTags
 }

@@ -3,7 +3,7 @@
 // Requires
 const tmi = require('tmi.js');
 require('dotenv').config();
-const { getCmdAndArgs, loaddb, savedb, getRandomItem } = require('./src/utils')
+const { getCmdAndArgs, loaddb, savedb, getRandomItem, getUserTags } = require('./src/utils')
 
 // Database - will be changed in future
 let db = {};
@@ -29,11 +29,13 @@ client.on('connected', () => {
 
 // Listen to "message" event
 client.on('message', async (channel, tags, message, self) => {
-    
     console.log(`📨 ${tags['display-name']}: ${message}`)
 
     // If message is from bot return
     if (tags.username.toLowerCase() == process.env.TWITCH_USERNAME.toLowerCase()) return;
+
+    // Extract important tags
+    const {color, userId, isMod, isStreamer, isSub, isTurbo, isVip} = getUserTags(tags)
     
     // Get lowercase version of message
     const lowerMessage = message.toLowerCase();
@@ -47,6 +49,42 @@ client.on('message', async (channel, tags, message, self) => {
         // Test command
         if (cmd == "ping") {
             return await client.say(channel, `Pong!`)
+        }
+
+        // Triggers
+        if (cmd == "greetings" && isStreamer) {
+            if (args.length < 1) return;
+
+            let subcommand = args.shift();
+
+            if (subcommand == "add") {
+                if (args < 2) {
+                    return await client.say(channel, `${db.config.prefix}greetings add command need min. two arguments (greetings add trigger <trigger> or greetings add response <response>).`)
+                }
+
+                let triggerOrResponse = args.shift()
+                triggerOrResponse = triggerOrResponse.toLowerCase();
+
+                if (triggerOrResponse == "trigger") {
+                    let newTrigger = args.join(" ")
+                    if (newTrigger.length < 2) return await client.say(channel, `New trigger needs to be atleast 2 chars long.`)
+                    db.greetings.triggers.push(newTrigger.toLowerCase())
+                    savedb(db);
+                    return await client.say(channel, `Greetings trigger "${newTrigger}" added successfully!`)
+                } else if (triggerOrResponse == "response") {
+                    let newResponse = args.join(" ")
+                    if (newResponse.length < 1) return await client.say(channel, `New response can't be empty.`)
+                    db.greetings.responses.push(newResponse)
+                    savedb(db);
+                    return await client.say(channel, `Greetings response "${newResponse}" added successfully!`)
+                } else {
+                    return await client.say(channel, `Wrong usage, try to specify type by "trigger" or "reponse".`)
+                }
+            }
+        }
+
+        if (cmd == "goodbyes") {
+
         }
 
         // Todo: command handler
