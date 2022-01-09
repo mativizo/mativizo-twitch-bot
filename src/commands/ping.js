@@ -1,5 +1,5 @@
 module.exports = {
-    name: { pl: "Ping", en: "Ping" },
+    name: "ping",
     description: { pl: `🤖 odpowiada Pong!`, en: `🤖 says Pong!` },
     aliases: ["ping", "test"],
     usage: "ping",

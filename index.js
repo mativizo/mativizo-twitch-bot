@@ -12,6 +12,21 @@ db = loaddb();
 
 console.log("🤖 Bot started.")
 
+const reloadCommands = () => {
+    const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
+    let commands = {}
+
+    for (const file of commandFiles) {
+        delete require.cache[require.resolve(`./src/commands/${file}`)];
+	    const command = require(`./src/commands/${file}`);
+	    commands[command.name] = command;
+        console.log(commands[command.name].notAllowedPermissions)
+    }
+
+    console.log(`🔃 Reloaded ${Object.keys(commands).length} command(s).`)
+    return commands;
+}
+
 // Connect to Twitch
 const client = new tmi.Client({
     connection: { reconnect: true },
@@ -26,7 +41,8 @@ client.connect();
 // Listen to "connect" event
 client.on('connected', () => {
     console.log(`🤖 Connected to @${process.env.TWITCH_TARGET_CHANNEL} as ${process.env.TWITCH_USERNAME}.`)
-    client.commands = reloadCommands();
+    client.reloadCommands = reloadCommands;
+    client.commands = client.reloadCommands();
 });
 
 // Listen to "message" event
@@ -52,12 +68,13 @@ client.on('message', async (channel, tags, message, self) => {
             let tempCmd = client.commands[commandName];
             if (tempCmd.aliases.includes(cmd)) {
                 if (!checkPermissions(userTags, tempCmd)) return;
+                let returnedValue = await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db);
                 if (tempCmd.dbSensitive) {
-                    db = await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db);
-                    return savedb(db);
-                } else {
-                    return await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db);
+                    db = returnedValue.db;
+                    savedb();
                 }
+
+                return;
             }
         }
         // Triggers
@@ -221,16 +238,3 @@ client.on('message', async (channel, tags, message, self) => {
 });
 
 
-const reloadCommands = () => {
-    const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
-    let commands = {}
-
-    for (const file of commandFiles) {
-	    const command = require(`./src/commands/${file}`);
-	    commands[command.name] = command;
-    }
-
-    console.log(`🔃 Reloaded ${Object.keys(commands).length} command(s).`)
-
-    return commands;
-}
