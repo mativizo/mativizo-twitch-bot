@@ -50,6 +50,12 @@ Still work in progress.
 
 #### Goodbyes
 
+- `!goodbyes add trigger <trigger>` - add trigger phrase for goodbyes, e.g. `!goodbyes add trigger hola`.
+- `!goodbyes add response <response>` - add response phrase for goodbyes, e.g. `!goodbyes add response Nice to see you!`
+- `!goodbyes list triggers` - sends list of all triggers with ids.
+- `!goodbyes list responses` - sends list of all responses with ids.
+- `!goodbyes remove trigger <id>` - removes trigger with specified id.
+- `!goodbyes remove response <id>` - removes response with specified id.
 
 #### Utilities
 

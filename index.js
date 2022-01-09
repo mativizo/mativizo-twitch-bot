@@ -116,5 +116,3 @@ client.on('message', async (channel, tags, message, self) => {
 
     }
 });
-
-
