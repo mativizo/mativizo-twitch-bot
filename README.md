@@ -20,6 +20,9 @@ TWITCH_TARGET_CHANNEL=MYUSERNAME
 
 # Language (pl or en)
 LANG=pl
+
+# Commands prefix
+PREFIX=!
 ```
 
 ## Setup
