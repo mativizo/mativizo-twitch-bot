@@ -66,6 +66,7 @@ Still work in progress.
 ### All users
 
 - `!help <commandName>` - show info about command e.g. `!help ping`.
+- `!lurk` - inform streamer about going to lurk.
 
 In progress:
 - `!cmds`/`!commands` - showing commands on screen.
