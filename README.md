@@ -49,31 +49,56 @@ You can add your custom roles and assign to users - check [#Commands](#Commands)
 
 ## Commands
 
-| Command | Category | Usage | Default Permissions | Description |
-| ------- | -------- | ----- | ------------------- | ----------- |
-|`greetings add trigger <trigger phrase>` | Greetings | `!greetings add trigger good morning` | Streamer | Adds trigger phrase for greetings. |
-|`greetings add response <response phrase>` | Greetings | `!greetings add response Welcome 👋` | Streamer | Adds response phrase for greetings. |
-|`greetings list triggers` | Greetings | `!greetings list triggers` | Streamer | Shows list of all greetings triggers with ids. |
-|`greetings list responses` | Greetings | `!greetings list responses` | Streamer | Shows list of all greetings responses with ids. |
-|`greetings remove trigger <id>` | Greetings | `!greetings remove trigger 13` | Streamer | Removes specified trigger by id. |
-|`greetings remove response <id>` | Greetings | `!greetings remove response 13` | Streamer | Removes specified response by id. |
-|`goodbyes add trigger <trigger phrase>` | Goodbyes | `!goodbyes add trigger goodbye` | Streamer | Adds trigger phrase for goodbyes. |
-|`goodbyes add response <response phrase>` | Goodbyes | `!goodbyes add response See ya! 👋` | Streamer | Adds response phrase for goodbyes. |
-|`goodbyes list triggers` | Goodbyes | `!goodbyes list triggers` | Streamer | Shows list of all goodbyes triggers with ids. |
-|`goodbyes list responses` | Goodbyes | `!goodbyes list responses` | Streamer | Shows list of all goodbyes responses with ids. |
-|`goodbyes remove trigger <id>` | Goodbyes | `!goodbyes remove trigger 13` | Streamer | Removes specified trigger by id. |
-|`goodbyes remove response <id>` | Goodbyes | `!goodbyes remove response 13` | Streamer | Removes specified response by id. |
-|`reload` | Dev | `!reload` | Streamer | Reloads command files. |
-|`id <?user>` | Dev | `!id`,  `!id @mativizo`, `!id mativizo` | Streamer | Shows user ID. |
+### Configuration:
+
+#### Bot and commands
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
 |`prefix <newPrefix>` | Configuration | `!prefix >` | Streamer | Changes prefix. |
-|`help <commandName>` | Other | `!help lurk` | All | Shows info about command. |
-|`lurk` | Other | `!lurk` | All | Informs streamer about going to lurk. |
-|`cmds` | Other | `!cmds` | All | Shows all available commands. |
-|`role create <Role Name>` | Roles | `!role create Kappas Kappa` | Streamer | Creates custom role. |
-|`role remove <roledid>` | Roles | `!role remove kappas-kappa` | Streamer | Removes custom role by id. |
-|`role grant <roleid> <username>` | Roles | `!role grant kappas-kappa mativizo` | Streamer | Assigns specified user to specified role. |
-|`role takeaway <roleid> <username>` | Roles | `!role takeaway kappas-kappa mativizo` | Streamer | Takes away specified role from specified user. |
-|`role list <?roleid>` | Roles | `!role list`, `!role list kappas-kappa` | Streamer | Shows list of roles, or list of users if role ID specified. |
+
+#### Greetings
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
+|`greetings add trigger <trigger phrase>` | `!greetings add trigger good morning` | Streamer | Adds trigger phrase for greetings. |
+|`greetings add response <response phrase>` | `!greetings add response Welcome 👋` | Streamer | Adds response phrase for greetings. |
+|`greetings list triggers` | `!greetings list triggers` | Streamer | Shows list of all greetings triggers with ids. |
+|`greetings list responses` | `!greetings list responses` | Streamer | Shows list of all greetings responses with ids. |
+|`greetings remove trigger <id>` | `!greetings remove trigger 13` | Streamer | Removes specified trigger by id. |
+|`greetings remove response <id>` | `!greetings remove response 13` | Streamer | Removes specified response by id. |
+
+#### Goodbyes:
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
+|`goodbyes add trigger <trigger phrase>` | `!goodbyes add trigger goodbye` | Streamer | Adds trigger phrase for goodbyes. |
+|`goodbyes add response <response phrase>` | `!goodbyes add response See ya! 👋` | Streamer | Adds response phrase for goodbyes. |
+|`goodbyes list triggers` | `!goodbyes list triggers` | Streamer | Shows list of all goodbyes triggers with ids. |
+|`goodbyes list responses` | `!goodbyes list responses` | Streamer | Shows list of all goodbyes responses with ids. |
+|`goodbyes remove trigger <id>` | `!goodbyes remove trigger 13` | Streamer | Removes specified trigger by id. |
+|`goodbyes remove response <id>` | `!goodbyes remove response 13` | Streamer | Removes specified response by id. |
+
+#### Custom Roles
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
+|`role create <Role Name>` | `!role create Kappas Kappa` | Streamer | Creates custom role. |
+|`role remove <roledid>` | `!role remove kappas-kappa` | Streamer | Removes custom role by id. |
+|`role grant <roleid> <username>` | `!role grant kappas-kappa mativizo` | Streamer | Assigns specified user to specified role. |
+|`role takeaway <roleid> <username>` | `!role takeaway kappas-kappa mativizo` | Streamer | Takes away specified role from specified user. |
+|`role list <?roleid>` | `!role list`, `!role list kappas-kappa` | Streamer | Shows list of roles, or list of users if role ID specified. |
+
+### Utils
+#### Dev
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
+|`reload` | `!reload` | Streamer | Reloads command files. |
+|`id <?user>` | `!id`,  `!id @mativizo`, `!id mativizo` | Streamer | Shows user ID. |
+
+### Others / Generic
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
+|`help <commandName>` | `!help lurk` | All | Shows info about command. |
+|`lurk` | `!lurk` | All | Informs streamer about going to lurk. |
+|`cmds` | `!cmds` | All | Shows all available commands. |
+
 
 ## WIP Commands:
 
