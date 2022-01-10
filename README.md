@@ -65,19 +65,17 @@ You can add your custom roles and assign to users - check [#Commands](#Commands)
 |`goodbyes remove response <id>` | Goodbyes | `!goodbyes remove response 13` | Streamer | Removes specified response by id. |
 |`reload` | Dev | `!reload` | Streamer | Reloads command files. |
 |`id <?user>` | Dev | `!id`,  `!id @mativizo`, `!id mativizo` | Streamer | Shows user ID. |
+|`prefix <newPrefix>` | Configuration | `!prefix >` | Streamer | Changes prefix. |
 |`help <commandName>` | Other | `!help lurk` | All | Shows info about command. |
 |`lurk` | Other | `!lurk` | All | Informs streamer about going to lurk. |
 |`cmds` | Other | `!cmds` | All | Shows all available commands. |
+|`role create <Role Name>` | Roles | `!role create Kappas Kappa` | Streamer | Creates custom role. |
+|`role remove <roledid>` | Roles | `!role remove kappas-kappa` | Streamer | Removes custom role by id. |
+|`role grant <roleid> <username>` | Roles | `!role grant kappas-kappa mativizo` | Streamer | Assigns specified user to specified role. |
+|`role takeaway <roleid> <username>` | Roles | `!role takeaway kappas-kappa mativizo` | Streamer | Takes away specified role from specified user. |
+|`role list <?roleid>` | Roles | `!role list`, `!role list kappas-kappa` | Streamer | Shows list of roles, or list of users if role ID specified. |
 
 ## WIP Commands:
-
-### Streamer
-
-- **WIP** `!role create <role>` - creates new role.
-- **WIP** `!role remove <role>` - removes role (can't remove sumermod and regular).
-- **WIP** `!role grant <user> <role>` - assigns user a role (supermod or regular).
-- **WIP** `!role takeaway <user> <role>` - removes assigned role from user (supermod or regular).
-- **WIP** `!role list <role>` - shows special roles and users.
 
 ### Super Moderators
 
