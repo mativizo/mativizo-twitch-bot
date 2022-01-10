@@ -29,8 +29,21 @@ const getRandomItem = (arr) => {
     return arr[Math.floor(Math.random() * arr.length)]
 }
 
+// Get custom roles
+const getCustomRoles = (userId, db) => {
+    let roles = []
+    for (const role of Object.keys(db.roles)) {
+        if (db.roles[role].includes(userId)) {
+            roles.push(role)
+        }
+    }
+    return roles;
+}
+
 // Extract user tags
-const getUserTags = (tags) => {
+const getUserTags = (tags, db) => {
+    let customRoles = getCustomRoles(tags['user-id'], db);
+    
     return {
         color: tags.color,
         isTurbo: tags.turbo,
@@ -38,6 +51,9 @@ const getUserTags = (tags) => {
         isStreamer: (Object.keys(tags.badges).includes('broadcaster')) ? tags.badges.broadcaster == "1" : false,
         isMod: (Object.keys(tags.badges).includes('moderator')) ? tags.badges.moderator == "1" : false,
         isVip: (Object.keys(tags.badges).includes('vip')) ? tags.badges.vip == "1" : false,
+        isRegular: (customRoles.includes("regular")),
+        isSuperModerator: (customRoles.includes('supermoderator'))),
+        otherRoles: customRoles,
         prettyName: tags['display-name'],
         userId: tags['user-id']
     }

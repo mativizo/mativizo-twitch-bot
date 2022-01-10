@@ -52,7 +52,7 @@ client.on('message', async (channel, tags, message, self) => {
     if (self) return;
 
     // Extract important tags
-    const userTags = getUserTags(tags)
+    const userTags = getUserTags(tags, db)
     
     // Get lowercase version of message
     const lowerMessage = message.toLowerCase();
