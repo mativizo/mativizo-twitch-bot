@@ -69,10 +69,11 @@ client.on('message', async (channel, tags, message, self) => {
                 if (!checkPermissions(userTags, tempCmd)) return;
                 let returnedValue = await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db, args);
                 if (tempCmd.dbSensitive) {
-                    db = returnedValue.db;
-                    savedb(db);
+                    if (Object.keys(returnedValue).includes('db')) {
+                        db = returnedValue.db;
+                        savedb(db);
+                    }
                 }
-
                 return;
             }
         }

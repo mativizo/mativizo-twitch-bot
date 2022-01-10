@@ -17,8 +17,11 @@ const loaddb = (name = 'db') => {
 // Extract command and args from message
 const getCmdAndArgs = (message, prefix) => {
     let args = message.trim().split(" ");
-    let cmd = args.shift();
-    cmd = cmd.split(prefix)[1]
+    let cmdSplit = args.shift();
+    cmdSplit = cmdSplit.split(prefix);
+    cmdSplit.shift();
+    let cmd = cmdSplit.join(prefix)
+
 
     return { cmd, args }
 }
@@ -30,10 +33,11 @@ const getRandomItem = (arr) => {
 }
 
 // Get custom roles
-const getCustomRoles = (userId, db) => {
+const getCustomRoles = (username, db) => {
+    username = username.toLowerCase();
     let roles = []
     for (const role of Object.keys(db.roles)) {
-        if (db.roles[role].includes(userId)) {
+        if (db.roles[role].users.includes(username)) {
             roles.push(role)
         }
     }
@@ -42,7 +46,7 @@ const getCustomRoles = (userId, db) => {
 
 // Extract user tags
 const getUserTags = (tags, db) => {
-    let customRoles = getCustomRoles(tags['user-id'], db);
+    let customRoles = getCustomRoles(tags.username, db);
     
     return {
         color: tags.color,
