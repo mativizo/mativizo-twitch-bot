@@ -40,10 +40,16 @@ module.exports = {
             if (args.length == 0) return await client.say(channel, `You need to specify role ID, e.g. ${db.config.prefix}role remove boss.`);
 
             let id = args.join("-")
+
             if (Object.keys(db.roles).includes(id)) {
                 let removedRole = db.roles[id]
-                delete db.roles[id]
-                await client.say(channel, `Successfully removed role "${removedRole.prettyName} (id: ${removedRole.id})!`);
+                if (removedRole.canRemove) {
+                    delete db.roles[id]
+                    await client.say(channel, `Successfully removed role "${removedRole.prettyName} (id: ${removedRole.id})!`);
+                } else {
+                    return await client.say(channel, `Removing this role is prohibited!`)
+                }
+                
             } else {
                 return await client.say(channel, `Role with ID: "${id}" doesn't exist!`);
             }

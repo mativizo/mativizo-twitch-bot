@@ -18,8 +18,49 @@
         "responses": ["Bye! 👋"]
     },
     "roles": {
-        "regular": [],
-        "supermoderator": []
+        "streamr": {
+            "id": "streamer",
+            "prettyName": "Streamer",
+            "isTwitch": true,
+            "canRemove": false,
+            "users": []
+        },
+        "supermoderator": {
+            "id": "supermoderator",
+            "prettyName": "Super Moderator",
+            "isTwitch": false,
+            "canRemove": false,
+            "users": []
+        },
+        "moderator": {
+            "id": "moderator",
+            "prettyName": "Moderator",
+            "isTwitch": true,
+            "canRemove": false,
+            "users": []
+        },
+        "subscriber": {
+            "id": "subscriber",
+            "prettyName": "Subscriber",
+            "isTwitch": true,
+            "canRemove": false,
+            "users": []
+        },
+        "vip": {
+            "id": "vip",
+            "prettyName": "VIP",
+            "isTwitch": true,
+            "canRemove": false,
+            "users": []
+        },
+        "regular": {
+            "id": "regular",
+            "prettyName": "Regular",
+            "isTwitch": false,
+            "canRemove": false,
+            "users": []
+        }
+        
     },
     "customCommands": [],
     "points": []

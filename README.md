@@ -85,6 +85,16 @@ You can add your custom roles and assign to users - check [#Commands](#Commands)
 |`role takeaway <roleid> <username>` | `!role takeaway kappas-kappa mativizo` | Streamer | Takes away specified role from specified user. |
 |`role list <?roleid>` | `!role list`, `!role list kappas-kappa` | Streamer | Shows list of roles, or list of users if role ID specified. |
 
+#### Permission Overrides
+| Command | Usage | Default Permissions | Description |
+| ------- | ----- | ------------------- | ----------- |
+|`permissions list <command>` | `!permissions list role` | Streamer | Shows permissions for specified command. |
+|`permissions override allowed <command> <?roleid1> <?roleid2> ...` | `!permissions override allowed role streamer supermoderator` | Streamer | Sets override for command (rule allow). |
+|`permissions override notallowed <command> <?roleid1> <?roleid2> ...` | `!permissions override notallowed role moderator` | Streamer | Sets override for command (rule notallow). |
+|`permissions default allowed <command>` | `!permissions default allowed role` | Streamer | Removes all overrides (rule allow) |
+|`permissions default notallowed <command>` | `!permissions default notallowed role` | Streamer | Removes all overrides (rule notallow) |
+
+
 ### Utils
 #### Dev
 | Command | Usage | Default Permissions | Description |

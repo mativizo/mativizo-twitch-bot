@@ -66,6 +66,7 @@ const getUserTags = (tags, db) => {
 const checkPermissions = (userTags, command) => {
     let ap = command.allowedPermissions;
     let nap = command.notAllowedPermissions;
+    // To add overrides
 
     
     let userAllowed = false;
