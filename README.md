@@ -56,18 +56,35 @@ Still work in progress.
 - `!goodbyes list responses` - sends list of all responses with ids.
 - `!goodbyes remove trigger <id>` - removes trigger with specified id.
 - `!goodbyes remove response <id>` - removes response with specified id.
-
-#### Utilities
-
 - `!reload` - reloads command files.
 
-### Mods
+- **WIP** `!role add <user> <role>` - assign user a role (supermod or regular).
+- **WIP** `!role remove <user> <role>` - remove assigned role from user (supermod or regular).
+- **WIP** `!role list <role>` - shows special roles and users.
+
+
+### Super Moderators
+
+- **WIP** `!stream game <game name>` - set streaming category.
+- **WIP** `!stream title <stream title>` - set stream title.
+- **WIP** `!stream ad` - activate ad.
+- **WIP** `!stream marker <text>` - add marker with comment.
+- **WIP** `!stream clip <durationinseconds>` - create clip (duration default 30).
+
+
+
+
+### Moderators
 
 ### All users
 
 - `!help <commandName>` - shows info about command e.g. `!help ping`.
 - `!lurk` - inform streamer about going to lurk.
 - `!cmds` - shows all available commands.
+
+- **WIP** `!followage <?username>` - shows own or specified user followage.
+- **WIP** `!watchtime <?username>` - shows own or specified user watch time.
+- **WIP** `!watchtime <?username>` - shows own or specified user watch time.
 
 ## Triggers:
 
