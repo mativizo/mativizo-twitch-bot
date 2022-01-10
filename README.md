@@ -58,8 +58,10 @@ Still work in progress.
 - `!goodbyes remove response <id>` - removes response with specified id.
 - `!reload` - reloads command files.
 
-- **WIP** `!role add <user> <role>` - assign user a role (supermod or regular).
-- **WIP** `!role remove <user> <role>` - remove assigned role from user (supermod or regular).
+- **WIP** `!role create <role>` - creates new role.
+- **WIP** `!role remove <role>` - removes role (can't remove sumermod and regular).
+- **WIP** `!role grant <user> <role>` - assigns user a role (supermod or regular).
+- **WIP** `!role takeaway <user> <role>` - removes assigned role from user (supermod or regular).
 - **WIP** `!role list <role>` - shows special roles and users.
 
 

@@ -17,6 +17,10 @@
         "triggers": ["bye"],
         "responses": ["Bye! 👋"]
     },
+    "roles": {
+        "regular": [],
+        "supermoderator": []
+    },
     "customCommands": [],
     "points": []
 }
