@@ -35,35 +35,49 @@ Still work in progress.
 4. Run `npm start`.
 5. Enjoy your streams! ❤
 
+## Roles and custom roles
+
+As a default bot has 6 roles:
+- Streamer (Broadcaster) *from Twitch*
+- Supermoderator *custom*
+- Moderator *from Twitch*
+- Subscriber *from Twitch*
+- Vip *from Twitch*
+- Regular *custom*
+
+You can add your custom roles and assign to users - check [#Commands](#Commands).
+
 ## Commands
 
+| Command | Category | Usage | Default Permissions | Description |
+| ------- | -------- | ----- | ------------------- | ----------- |
+|`greetings add trigger <trigger phrase>` | Greetings | `!greetings add trigger good morning` | Streamer | Adds trigger phrase for greetings. |
+|`greetings add response <response phrase>` | Greetings | `!greetings add response Welcome 👋` | Streamer | Adds response phrase for greetings. |
+|`greetings list triggers` | Greetings | `!greetings list triggers` | Streamer | Shows list of all greetings triggers with ids. |
+|`greetings list responses` | Greetings | `!greetings list responses` | Streamer | Shows list of all greetings responses with ids. |
+|`greetings remove trigger <id>` | Greetings | `!greetings remove trigger 13` | Streamer | Removes specified trigger by id. |
+|`greetings remove response <id>` | Greetings | `!greetings remove response 13` | Streamer | Removes specified response by id. |
+|`goodbyes add trigger <trigger phrase>` | Goodbyes | `!goodbyes add trigger goodbye` | Streamer | Adds trigger phrase for goodbyes. |
+|`goodbyes add response <response phrase>` | Goodbyes | `!goodbyes add response See ya! 👋` | Streamer | Adds response phrase for goodbyes. |
+|`goodbyes list triggers` | Goodbyes | `!goodbyes list triggers` | Streamer | Shows list of all goodbyes triggers with ids. |
+|`goodbyes list responses` | Goodbyes | `!goodbyes list responses` | Streamer | Shows list of all goodbyes responses with ids. |
+|`goodbyes remove trigger <id>` | Goodbyes | `!goodbyes remove trigger 13` | Streamer | Removes specified trigger by id. |
+|`goodbyes remove response <id>` | Goodbyes | `!goodbyes remove response 13` | Streamer | Removes specified response by id. |
+|`reload` | Dev | `!reload` | Streamer | Reloads command files. |
+|`id <?user>` | Dev | `!id`,  `!id @mativizo`, `!id mativizo` | Streamer | Shows user ID. |
+|`help <commandName>` | Other | `!help lurk` | All | Shows info about command. |
+|`lurk` | Other | `!lurk` | All | Informs streamer about going to lurk. |
+|`cmds` | Other | `!cmds` | All | Shows all available commands. |
+
+## WIP Commands:
+
 ### Streamer
-
-#### Greetings
-
-- `!greetings add trigger <trigger>` - add trigger phrase for greetings, e.g. `!greetings add trigger hola`.
-- `!greetings add response <response>` - add response phrase for greetings, e.g. `!greetings add response Nice to see you!`
-- `!greetings list triggers` - sends list of all triggers with ids.
-- `!greetings list responses` - sends list of all responses with ids.
-- `!greetings remove trigger <id>` - removes trigger with specified id.
-- `!greetings remove response <id>` - removes response with specified id.
-
-#### Goodbyes
-
-- `!goodbyes add trigger <trigger>` - add trigger phrase for goodbyes, e.g. `!goodbyes add trigger hola`.
-- `!goodbyes add response <response>` - add response phrase for goodbyes, e.g. `!goodbyes add response Nice to see you!`
-- `!goodbyes list triggers` - sends list of all triggers with ids.
-- `!goodbyes list responses` - sends list of all responses with ids.
-- `!goodbyes remove trigger <id>` - removes trigger with specified id.
-- `!goodbyes remove response <id>` - removes response with specified id.
-- `!reload` - reloads command files.
 
 - **WIP** `!role create <role>` - creates new role.
 - **WIP** `!role remove <role>` - removes role (can't remove sumermod and regular).
 - **WIP** `!role grant <user> <role>` - assigns user a role (supermod or regular).
 - **WIP** `!role takeaway <user> <role>` - removes assigned role from user (supermod or regular).
 - **WIP** `!role list <role>` - shows special roles and users.
-
 
 ### Super Moderators
 
@@ -78,11 +92,9 @@ Still work in progress.
 
 ### Moderators
 
-### All users
 
-- `!help <commandName>` - shows info about command e.g. `!help ping`.
-- `!lurk` - inform streamer about going to lurk.
-- `!cmds` - shows all available commands.
+
+
 
 - **WIP** `!followage <?username>` - shows own or specified user followage.
 - **WIP** `!watchtime <?username>` - shows own or specified user watch time.
