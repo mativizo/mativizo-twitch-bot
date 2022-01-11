@@ -66,7 +66,7 @@ client.on('message', async (channel, tags, message, self) => {
         for (commandName of Object.keys(client.commands)) {
             let tempCmd = client.commands[commandName];
             if (tempCmd.aliases.includes(cmd)) {
-                if (!checkPermissions(userTags, tempCmd)) return;
+                if (!checkPermissions(userTags, tempCmd, db)) return;
                 let returnedValue = await tempCmd.execute(channel, tags, message, client, lowerMessage, userTags, db, args);
                 if (tempCmd.dbSensitive) {
                     if (Object.keys(returnedValue).includes('db')) {

@@ -57,17 +57,15 @@ const getUserTags = (tags, db) => {
         isVip: (Object.keys(tags.badges).includes('vip')) ? tags.badges.vip == "1" : false,
         isRegular: customRoles.includes("regular"),
         isSuperModerator: customRoles.includes('supermoderator'),
-        otherRoles: customRoles,
+        customRoles: customRoles,
         prettyName: tags['display-name'],
         userId: tags['user-id']
     }
 }
 
-const checkPermissions = (userTags, command) => {
+const checkPermissions = (userTags, command, db) => {
     let ap = command.allowedPermissions;
     let nap = command.notAllowedPermissions;
-    // To add overrides
-
     
     let userAllowed = false;
     let userNotAllowed = true;
@@ -80,9 +78,11 @@ const checkPermissions = (userTags, command) => {
     } else {
         for (a of ap) {
             if (a == "streamer" && userTags.isStreamer) userAllowed = true;
-            if (a == "mod" && userTags.isMod) userAllowed = true;
-            if (a == "sub" && userTags.isSub) userAllowed = true;
+            if (a == "supermoderator" && userTags.customRoles.includes("supermoderator")) userAllowed = true;
+            if (a == "moderator" && userTags.isMod) userAllowed = true;
+            if (a == "subscriber" && userTags.isSub) userAllowed = true;
             if (a == "vip" && userTags.isVip) userAllowed = true;
+            if (a == "regular" && userTags.customRoles.includes("regular")) userAllowed = true;
         }
     }
 
@@ -93,13 +93,62 @@ const checkPermissions = (userTags, command) => {
         userNotAllowed = true
     } else {
         for (na of nap) {
-            if (na == "streamer" && userTags.isStreamer) userNotAllowed = true;
-            if (na == "mod" && userTags.isMod) userNotAllowed = true;
-            if (na == "sub" && userTags.isSub) userNotAllowed = true;
-            if (na == "vip" && userTags.isVip) userNotAllowed = true;
+            if (a == "streamer" && userTags.isStreamer) userNotAllowed = true;
+            if (a == "supermoderator" && userTags.customRoles.includes("supermoderator")) userNotAllowed = true;
+            if (a == "moderator" && userTags.isMod) userNotAllowed = true;
+            if (a == "subscriber" && userTags.isSub) userNotAllowed = true;
+            if (a == "vip" && userTags.isVip) userNotAllowed = true;
+            if (a == "regular" && userTags.customRoles.includes("regular")) userNotAllowed = true;
         }
     }
 
+    // Custom permissions
+    if (Object.keys(db.commandOverrides).includes(command.name)) {
+        if (Object.keys(db.commandOverrides[command.name]).includes("allowedPermissions")) {
+            let roles = db.commandOverrides[command.name].allowedPermissions;
+            userAllowed = false;
+            if (roles.length == 0) {
+                userAllowed = true;
+            } else {
+                for (const role of roles) {
+                    if (userTags.customRoles.includes(role)) {
+                        userAllowed = true;
+                    }
+
+                    if (role == "streamer" && userTags.isStreamer) userAllowed = true;
+                    if (role == "supermoderator" && userTags.customRoles.includes("supermoderator")) userAllowed = true;
+                    if (role == "moderator" && userTags.isMod) userAllowed = true;
+                    if (role == "subscriber" && userTags.isSub) userAllowed = true;
+                    if (role == "vip" && userTags.isVip) userAllowed = true;
+                    if (role == "regular" && userTags.customRoles.includes("regular")) userAllowed = true;
+                }
+            }
+
+            
+        }
+
+        if (Object.keys(db.commandOverrides[command.name]).includes("notAllowedPermissions")) {
+            let roles = db.commandOverrides[command.name].notAllowedPermissions;
+            userNotAllowed = false;
+            if (roles.length == 0) {
+                userNotAllowed = true;
+            } else {
+                for (const role of roles) {
+                    if (userTags.customRoles.includes(role)) {
+                        userNotAllowed = true;
+                    }
+
+                    if (role == "streamer" && userTags.isStreamer) userNotAllowed = true;
+                    if (role == "supermoderator" && userTags.customRoles.includes("supermoderator")) userNotAllowed = true;
+                    if (role == "moderator" && userTags.isMod) userNotAllowed = true;
+                    if (role == "subscriber" && userTags.isSub) userNotAllowed = true;
+                    if (role == "vip" && userTags.isVip) userNotAllowed = true;
+                    if (role == "regular" && userTags.customRoles.includes("regular")) userNotAllowed = true;
+                }
+            }
+        }
+    }
+    
     return (userAllowed && !userNotAllowed);
 }
 
